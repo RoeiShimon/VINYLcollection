@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0d0d0d">
+  <meta name="description" content="A personal archive of music on vinyl. Discover albums and curate your own record collection.">
+  <title>VINYL Collection — Your music, collected.</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#collection">Skip to collection</a>
+  <header class="site-header wrap">
+    <a class="brand" href="#" aria-label="VINYL Collection home">
+      <span class="brand-record" aria-hidden="true"></span>
+      <span>VINYL<span class="brand-sub">COLLECTION</span></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a class="nav-link" href="#collection">My collection <span id="nav-count">0</span></a>
+      <button class="button button-light button-small" id="header-add" type="button"><span aria-hidden="true">+</span> Add Album</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <p id="storage-warning" class="notice" role="alert" hidden></p>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot"></span> FOR THE LOVE OF THE RECORD</p>
+        <h1 id="hero-title">Your music.<br>Your <span class="serif">collection.</span></h1>
+        <p class="hero-description">A personal archive of music on vinyl.<br>Find the records you love. Keep them close.</p>
+        <form id="search-form" role="search">
+          <label class="sr-only" for="album-search">Search albums or artists</label>
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+            <input id="album-search" type="search" placeholder="Search albums or artists..." autocomplete="off" maxlength="160" aria-controls="search-results">
+            <button type="submit" class="search-submit" aria-label="Search albums"><span aria-hidden="true">↗</span></button>
+          </div>
+        </form>
+        <div class="suggestions"><span>A place to start</span><button type="button" data-query="Rumours">Rumours</button><button type="button" data-query="Kind of Blue">Kind of Blue</button><button type="button" data-query="Discovery">Discovery</button></div>
+      </div>
+      <div class="hero-art" role="img" aria-label="An illustrated green record sleeve with a black vinyl record emerging from it">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="vinyl"><div class="vinyl-label"><span>VINYL<br>COLLECTION</span><i></i><small>SIDE A · 33⅓ RPM</small></div></div>
+        <div class="sleeve">
+          <div class="sleeve-top"><span>THE ART OF<br>LISTENING.</span><span>VOL.<br>001</span></div>
+          <div class="sleeve-graphic"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="sleeve-bottom"><span>LESS SCROLLING.<br>MORE SPINNING.</span><span class="sleeve-mark">vc.</span></div>
+        </div>
+        <span class="art-caption"><span class="tiny-record" aria-hidden="true"></span> A LITTLE MORE ANALOG.</span>
+      </div>
+    </section>
+
+    <section id="search-results" class="results-section" aria-labelledby="results-heading" hidden>
+      <div class="section-heading">
+        <div><p class="eyebrow">DIGGING FOR SOMETHING GOOD</p><h2 id="results-heading">Search results</h2></div>
+        <button id="close-search" class="text-button" type="button">Close <span aria-hidden="true">×</span></button>
+      </div>
+      <p class="results-note">Select an album to check the details and add it to your collection.</p>
+      <p id="search-status" class="search-status" role="status" aria-live="polite"></p>
+      <div id="results-grid" class="album-grid"></div>
+      <button id="search-more" class="text-button" type="button" hidden>Search more albums on MusicBrainz <span aria-hidden="true">↗</span></button>
+      <p class="api-note">Primary search and artwork from Apple iTunes, automatically supplemented by MusicBrainz and Cover Art Archive. Search more for broader matches. Choose an edition in MusicBrainz album details. Release years may reflect reissues, not specific vinyl pressings.</p>
+    </section>
+
+    <section id="collection" class="collection-section" aria-labelledby="collection-heading">
+      <div class="collection-top">
+        <div><p class="eyebrow">THE RECORDS THAT MAKE YOU, YOU</p><h2 id="collection-heading">Your collection<span class="count-badge" id="collection-count">0</span></h2></div>
+        <div class="collection-tools">
+          <label class="sr-only" for="collection-filter">Filter your collection</label>
+          <input id="collection-filter" type="search" placeholder="Filter collection..." autocomplete="off">
+          <label class="sr-only" for="sort-order">Sort collection</label>
+          <select id="sort-order"><option value="newest">Recently added</option><option value="artist">Artist A–Z</option><option value="title">Album A–Z</option><option value="year">Release year</option></select>
+        </div>
+      </div>
+      <div class="collection-meta"><span id="record-summary">0 records. Endless possibilities.</span><span class="view-label"><span aria-hidden="true">▦</span> YOUR PERSONAL LIBRARY</span></div>
+      <div id="collection-grid" class="album-grid"></div>
+      <div id="empty-collection" class="empty-state">
+        <div class="empty-record" aria-hidden="true"><span>+</span></div>
+        <h3>Every collection starts with one record.</h3>
+        <p>An old favorite. A new discovery. A no-skip classic.<br>Find your first album and make this space yours.</p>
+        <button id="empty-add" type="button" class="button button-accent"><span aria-hidden="true">+</span> Find your first record</button>
+        <span class="empty-footnote">Handpicked by you. Saved in this browser.</span>
+      </div>
+      <p id="no-filter-results" class="no-filter" role="status" hidden>No records match your filter. Try another album or artist.</p>
+    </section>
+    <aside class="bottom-note"><span class="tiny-record" aria-hidden="true"></span><p>More than a collection.<br><span>A soundtrack to who you are.</span></p><span class="bottom-note-right">CURATED BY YOU. ALWAYS.</span></aside>
+  </main>
+  <footer class="site-footer wrap"><span>VINYL COLLECTION <span class="footer-divider">/</span> Made for the music.</span><span>Keep the good records spinning. <span aria-hidden="true">↗</span></span><p>Your collection is stored locally in this browser, not synced or backed up. Album search and artwork powered by <a href="https://www.apple.com/itunes/" target="_blank" rel="noopener noreferrer">Apple iTunes</a>.</p></footer>
+
+  <dialog id="album-dialog" aria-labelledby="dialog-title">
+    <button id="dialog-close" class="dialog-close" type="button" aria-label="Close album details">×</button>
+    <div id="dialog-art" class="dialog-art"></div>
+    <div class="dialog-content"><p class="eyebrow" id="dialog-eyebrow">MAKE ROOM ON THE SHELF</p><h2 id="dialog-title"></h2><p id="dialog-artist"></p><p id="dialog-year"></p>
+      <p class="dialog-runtime"><span>Total Runtime:</span> <strong id="album-runtime" aria-live="polite">Loading…</strong></p>
+      <div id="edition-control" hidden><label for="album-edition">Album edition</label><select id="album-edition"></select></div>
+      <p class="dialog-note">Album-level metadata. This does not identify a particular vinyl pressing. Store release years may reflect reissues.</p><a id="album-source" target="_blank" rel="noopener noreferrer">View album source <span aria-hidden="true">↗</span></a><button id="dialog-action" class="button button-accent" type="button">Add to collection</button><p id="dialog-status" role="status"></p>
+      <details class="custom-artwork" id="custom-artwork">
+        <summary>Artwork missing? Use your own image URL</summary>
+        <form id="artwork-form">
+          <label for="artwork-url">Direct image URL (HTTP or HTTPS)</label>
+          <input id="artwork-url" type="url" placeholder="https://example.com/album.jpg" required>
+          <button type="submit" class="text-button" id="artwork-apply">Use image</button>
+        </form>
+        <p id="artwork-status" role="status" aria-live="polite"></p>
+      </details>
+    </div>
+    <section class="tracklist" aria-labelledby="tracklist-heading">
+        <div class="tracklist-heading"><h3 id="tracklist-heading">Tracklist</h3><span id="tracklist-total"></span></div>
+        <p id="tracklist-status" role="status" aria-live="polite"></p>
+        <ol id="tracklist-tracks" aria-label="Album tracks" tabindex="0" hidden></ol>
+        <a id="tracklist-source" target="_blank" rel="noopener noreferrer" hidden></a>
+        <button id="tracklist-retry" class="text-button" type="button" hidden>Try tracklist again</button>
+    </section>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
